@@ -25,6 +25,9 @@ const updateBicycleIntoDB = async (id: string, bicycleData: TBiCycle) => {
 
 const deleteBicycleFromDB = async (id: string) => {
   const result = await BiCycle.findByIdAndDelete(id);
+  if (!result) {
+    throw new Error('Bicycle not found');
+  }
   return result;
 };
 
